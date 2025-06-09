@@ -1,0 +1,171 @@
+﻿/* Общий контейнер с Grid */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Основной контент слева, sidebar справа */
+    gap: 20px;
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 0 15px;
+    align-items: start;
+    margin-bottom: 50px;
+}
+
+p, li {
+    font-size: 1.1em;
+}
+
+/* Боковая панель справа */
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+    .sidebar #login-prompt {
+        text-align: center;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 10px;
+        color: #0066cc;
+    }
+
+    .sidebar .button {
+        display: block;
+        margin-top: 15px;
+    }
+
+/* Стили для кнопки "Войти" */
+.button {
+    display: block;
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #0066cc, #00cc99);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
+    transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+}
+
+    .button:hover {
+        background: linear-gradient(90deg, #0052a3, #00b386);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 102, 204, 0.4);
+    }
+
+    .button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 102, 204, 0.2);
+    }
+
+/* Карточки */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+    .card h1 {
+        margin-top: 0;
+    }
+
+    .card h2 {
+        color: #333;
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 5px;
+    }
+
+.gradient-text {
+    background: linear-gradient(90deg, #0066cc, #00cc99);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 2em;
+}
+
+.feature-block {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+}
+
+    .feature-item i {
+        font-size: 2em;
+        color: #0066cc;
+        margin-bottom: 10px;
+    }
+
+    .feature-item h3 {
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .feature-item p {
+        color: #666;
+        font-size: 1.1em;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 102, 204, 0.4);
+    }
+
+/* Блок преимуществ */
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .benefit-list li {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .benefit-list i {
+        color: #00cc99;
+        margin-right: 10px;
+    }
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        margin: 0 10px 20px;
+    }
+}

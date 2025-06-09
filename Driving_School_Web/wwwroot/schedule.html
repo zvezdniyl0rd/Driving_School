@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИС автошколы</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/schedule.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/student-schedules.html">Мои записи</a></li>
+                <li><a href="/instructor-schedules.html">Мои записи</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="schedule">
+            <div class="section-header">
+                <h2>Расписание</h2>
+                <button id="add-schedule">Добавить</button>
+            </div>
+            <div id="schedule-table"></div>
+        </section>
+    </main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h3>Информация о записи</h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    <div id="add-schedule-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h3>Создание записи</h3>
+            <div class="edit-form">
+                <label for="schedule-date">Дата:</label>
+                <input type="date" id="schedule-date" required>
+                <label for="schedule-time">Время:</label>
+                <input type="time" id="schedule-time" min="08:00" max="20:00" required>
+                <p id="add-schedule-error" class="error-message" style="display: none;"></p>
+            </div>
+            <div class="modal-buttons">
+                <button id="create-schedule">Создать запись</button>
+                <button id="cancel-add-schedule">Отмена</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+    <script src="/js/auth.js"></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/schedule.js"></script>
+</body>
+</html>

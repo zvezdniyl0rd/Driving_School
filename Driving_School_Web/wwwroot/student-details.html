@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИС автошколы - Информация о студенте</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/student-details.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav>
+            <ul>
+                <li><a href="/main.html">Главная</a></li>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/cars.html">Автомобили</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/student-schedules.html">Мои записи</a></li>
+                <li><a href="/instructor-schedules.html">Мои записи</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="student-details">
+            <div id="student-info">
+                <div class="student-container">
+                    <div class="student-text" id="student-text"></div>
+                    <div class="student-photo">
+                        <img src="/images/placeholder-student.png" alt="Фото студента" id="student-photo">
+                    </div>
+                </div>
+            </div>
+            <div id="reviews-section">
+                <h3>Отзывы</h3>
+                <div class="reviews-container">
+                    <div id="reviews-list" class="reviews-list"></div>
+                    <div id="add-review-section" class="add-review-section">
+                        <h4>Оставить отзыв</h4>
+                        <textarea id="review-text" placeholder="Введите текст отзыва..." rows="4"></textarea>
+                        <div class="rating">
+                            <label>Ваша оценка:</label>
+                            <div class="stars" id="review-stars">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button id="submit-review">Оставить отзыв</button>
+                        <p id="review-error" class="error-message" style="display: none;"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="delete-review-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Подтверждение</h3>
+                <p>Вы уверены, что хотете удалить отзыв?</p>
+                <div class="modal-buttons">
+                    <button id="confirm-delete-review">Удалить</button>
+                    <button id="cancel-delete-review">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/student-details.js" defer></script>
+</body>
+</html>

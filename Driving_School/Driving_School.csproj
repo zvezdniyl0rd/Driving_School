@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\Question\**" />
+    <Compile Remove="Interfaces\StudentProgress\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="Models\Question\**" />
+    <Compile Remove="Models\StudentProgress\**" />
+    <Content Remove="Interfaces\Question\**" />
+    <Content Remove="Interfaces\StudentProgress\**" />
+    <Content Remove="Migrations\**" />
+    <Content Remove="Models\Question\**" />
+    <Content Remove="Models\StudentProgress\**" />
+    <EmbeddedResource Remove="Interfaces\Question\**" />
+    <EmbeddedResource Remove="Interfaces\StudentProgress\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="Models\Question\**" />
+    <EmbeddedResource Remove="Models\StudentProgress\**" />
+    <None Remove="Interfaces\Question\**" />
+    <None Remove="Interfaces\StudentProgress\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="Models\Question\**" />
+    <None Remove="Models\StudentProgress\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\QuestionController.cs" />
+    <Compile Remove="Controllers\StudentProgressController.cs" />
+    <Compile Remove="Repositories\QuestionRepository.cs" />
+    <Compile Remove="Repositories\StudentProgressRepository.cs" />
+    <Compile Remove="Services\QuestionService.cs" />
+    <Compile Remove="Services\StudentProgressService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Driving_School.bacpac" />
+    <None Remove="Driving_School.http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="8.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

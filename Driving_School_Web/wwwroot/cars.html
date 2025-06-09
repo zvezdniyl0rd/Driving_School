@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомобили</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/cars.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav>
+            <ul>
+                <li><a href="/main.html">Главная</a></li>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/cars.html">Автомобили</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/instructor-schedules.html">Мои записи</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="section-header">
+                <h2>Список автомобилей</h2>
+                <!--<button id="add-car">Добавить</button>-->
+            </div>
+            <div class="cars-container">
+                <div class="filter-panel" id="filter-panel">
+                    <h3>Фильтры</h3>
+                    <label for="city-filter">Город:</label>
+                    <select id="city-filter">
+                        <option value="">Любой</option>
+                    </select>
+                    <label for="car-number-filter">Регистрационный номер:</label>
+                    <input type="text" id="car-number-filter" placeholder="Введите номер...">
+                    <div class="filter-buttons">
+                        <button id="apply-filters">Применить</button>
+                        <button id="reset-filters">Сбросить фильтры</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="cars-table">
+                        <thead>
+                            <tr>
+                                <th>Марка</th>
+                                <th>Модель</th>
+                                <th>Цвет</th>
+                                <th>Регистрационный номер</th>
+                                <th>Город</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cars-list"></tbody>
+                    </table>
+                    <div class="table-footer">
+                        <div class="table-controls">
+                            <label for="page-size">Кол-во на страницу:</label>
+                            <select id="page-size">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="pagination">
+                            <button id="prev-page" disabled>Назад</button>
+                            <div id="page-numbers"></div>
+                            <button id="next-page">Вперёд</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для подтверждения удаления -->
+            <div id="delete-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Подтверждение удаления</h3>
+                    <p>Вы уверены, что хотите удалить автомобиль из системы?</p>
+                    <p class="warning">Внимание: при удалении автомобиля также удаляются связи с инструкторами.</p>
+                    <div class="modal-buttons">
+                        <button id="confirm-delete">Удалить</button>
+                        <button id="cancel-delete">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для редактирования -->
+            <div id="edit-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Редактирование автомобиля</h3>
+                    <div class="edit-form">
+                        <label for="edit-brand" class="required">Марка:</label>
+                        <input type="text" id="edit-brand" placeholder="Введите марку...">
+                        <label for="edit-model" class="required">Модель:</label>
+                        <input type="text" id="edit-model" placeholder="Введите модель...">
+                        <label for="edit-color" class="required">Цвет:</label>
+                        <input type="text" id="edit-color" placeholder="Введите цвет...">
+                        <label for="edit-car-number" class="required">Регистрационный номер:</label>
+                        <input type="text" id="edit-car-number" placeholder="Введите номер...">
+                        <p id="edit-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-edit">Сохранить</button>
+                        <button id="cancel-edit">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для добавления -->
+            <div id="add-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Добавить автомобиль</h3>
+                    <div class="edit-form">
+                        <label for="add-brand" class="required">Марка:</label>
+                        <input type="text" id="add-brand" placeholder="Введите марку...">
+                        <label for="add-model" class="required">Модель:</label>
+                        <input type="text" id="add-model" placeholder="Введите модель...">
+                        <label for="add-color" class="required">Цвет:</label>
+                        <input type="text" id="add-color" placeholder="Введите цвет...">
+                        <label for="add-car-number" class="required">Регистрационный номер:</label>
+                        <input type="text" id="add-car-number" placeholder="Введите номер...">
+                        <p id="add-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-add">Сохранить</button>
+                        <button id="cancel-add">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/cars.js" defer></script>
+</body>
+</html>

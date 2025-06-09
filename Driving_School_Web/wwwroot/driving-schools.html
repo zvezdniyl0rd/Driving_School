@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автошколы</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/driving-schools.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav>
+            <ul>
+                <li><a href="/main.html">Главная</a></li>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/cars.html">Автомобили</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/instructor-schedules.html">Мои записи</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="section-header">
+                <h2>Список автошкол</h2>
+                <button id="add-driving-school">Добавить</button>
+            </div>
+            <div class="driving-schools-container">
+                <div class="filter-panel" id="filter-panel">
+                    <h3>Фильтры</h3>
+                    <label for="city-filter">Город:</label>
+                    <select id="city-filter">
+                        <option value="">Любой</option>
+                    </select>
+                    <label for="address-filter">Адрес:</label>
+                    <input type="text" id="address-filter" placeholder="Введите адрес...">
+                    <div class="filter-buttons">
+                        <button id="apply-filters">Применить</button>
+                        <button id="reset-filters">Сбросить фильтры</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="driving-schools-table">
+                        <thead>
+                            <tr>
+                                <th>Адрес</th>
+                                <th>Город</th>
+                                <th>Телефон</th>
+                                <th>Email</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driving-schools-list"></tbody>
+                    </table>
+                    <div class="table-footer">
+                        <div class="table-controls">
+                            <label for="page-size">Кол-во на страницу:</label>
+                            <select id="page-size">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="pagination">
+                            <button id="prev-page" disabled>Назад</button>
+                            <div id="page-numbers"></div>
+                            <button id="next-page">Вперёд</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для подтверждения удаления -->
+            <div id="delete-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Подтверждение удаления</h3>
+                    <p>Вы уверены, что хотите удалить автошколу из системы?</p>
+                    <p class="warning">Внимание: при удалении автошколы также удаляются связи с аккаунтами студентов и инструкторов.</p>
+                    <div class="modal-buttons">
+                        <button id="confirm-delete">Удалить</button>
+                        <button id="cancel-delete">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для редактирования -->
+            <div id="edit-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Редактирование автошколы</h3>
+                    <div class="edit-form">
+                        <label for="edit-address" class="required">Адрес:</label>
+                        <input type="text" id="edit-address" placeholder="Введите адрес...">
+                        <label for="edit-phoneNumber" class="required">Телефон:</label>
+                        <input type="text" id="edit-phoneNumber" placeholder="Введите телефон...">
+                        <label for="edit-email" class="required">Email:</label>
+                        <input type="email" id="edit-email" placeholder="Введите email...">
+                        <label for="edit-city" class="required">Город:</label>
+                        <select id="edit-city">
+                            <option value="">Выберите город</option>
+                        </select>
+                        <p id="edit-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-edit">Сохранить</button>
+                        <button id="cancel-edit">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для добавления -->
+            <div id="add-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Добавить автошколу</h3>
+                    <div class="edit-form">
+                        <label for="add-address" class="required">Адрес:</label>
+                        <input type="text" id="add-address" placeholder="Введите адрес...">
+                        <label for="add-phoneNumber" class="required">Телефон:</label>
+                        <input type="text" id="add-phoneNumber" placeholder="Введите телефон...">
+                        <label for="add-email" class="required">Email:</label>
+                        <input type="email" id="add-email" placeholder="Введите email...">
+                        <label class="required">Город:</label>
+                        <div>
+                            <select id="add-city" style="display: block;">
+                                <option value="">Выберите город</option>
+                            </select>
+                            <button id="add-new-city" style="display: block;">Добавить новый город</button>
+                        </div>
+                        <div id="new-city-input" style="display: none; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
+                            <input type="text" id="add-new-city-name" placeholder="Название нового города" style="flex: 1;">
+                            <button id="cancel-new-city">Отмена</button>
+                        </div>
+                        <p id="add-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-add">Сохранить</button>
+                        <button id="cancel-add">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/driving-schools.js" defer></script>
+</body>
+</html>

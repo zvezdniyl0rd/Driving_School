@@ -1,0 +1,268 @@
+﻿#schedule {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    border-radius: 10px;
+}
+
+    #schedule h2 {
+        margin: 0;
+    }
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+    .section-header button {
+        padding: 8px 16px;
+        background-color: #258ee8;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+        .section-header button:hover {
+            background-color: #759fce;
+        }
+
+#schedule-table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    background-color: white;
+    border: 2px solid #e0e0e0;
+    display: table;
+    animation: fadeIn 0.3s ease-in;
+}
+
+    #schedule-table th, #schedule-table td {
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        padding: 10px 0 0 0;
+        vertical-align: top;
+        width: 14.28%; /* 100% / 7 дней */
+        box-sizing: border-box;
+    }
+
+    #schedule-table th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+        height: 40px; /* Фиксированная высота для заголовков */
+    }
+
+    /* Обеспечиваем квадратные ячейки */
+    #schedule-table td {
+        position: relative;
+        padding-bottom: 7.4%; /* Устанавливаем высоту равной ширине для квадратных ячеек */
+    }
+
+        /* Контейнер для содержимого ячейки */
+        #schedule-table td > * {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            box-sizing: border-box;
+        }
+
+/* Размер таблицы с ячейками */
+table {
+    width: 100%;
+    flex-grow: 1;
+}
+
+    table[data-weeks="4"] tr {
+        height: 25%;
+    }
+
+    table[data-weeks="5"] tr {
+        height: 20%;
+    }
+
+    table[data-weeks="6"] tr {
+        height: 16.67%;
+    }
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0 2px;
+    text-align: center;
+}
+
+.month-title {
+    font-size: 1.5rem;
+    margin: 0 10px; /* Отступы между названием и кнопками */
+}
+
+.nav-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+    .nav-button:hover {
+        background-color: #e0e0e0;
+    }
+
+.date-number {
+    text-align: left;
+    font-size: 1rem;
+}
+
+.slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.slot {
+    font-size: 0.8em;
+    padding: 2px 5px;
+    border-radius: 6px;
+}
+
+.available {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Скрываем информацию о занятых местах */
+.unavailable {
+    display: none;
+}
+
+/* Визуальное выделение дней */
+.has-available {
+    background-color: #e0f7e0; /* Светло-зелёный фон для дней с доступными слотами */
+}
+
+    .has-available:hover {
+        background-color: #d0e7d0; /* Чуть темнее при наведении */
+    }
+
+.no-available {
+    background-color: #d4d4d4; /* Серый фон для полностью занятых дней */
+}
+
+.current-date {
+    background-color: #ff8c00; /* Рыжий цвет для текущей даты */
+}
+
+/* Стили для модального окна (обновляем для нового модального окна) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close:hover {
+        color: black;
+    }
+
+.edit-form {
+    font-size: 1.3em;
+    text-align: left;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+    .edit-form label {
+        display: block;
+        margin: 10px 0 0;
+        font-weight: bold;
+    }
+
+    .edit-form input,
+    .edit-form select {
+        width: 100%;
+        font-size: 0.8em;
+        padding: 5px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        display: block;
+    }
+
+    .edit-form .error-message {
+        color: #d32f2f;
+        font-size: 0.9em;
+        margin-top: 10px;
+    }
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .modal-buttons button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+#create-schedule {
+    background-color: #4CAF50;
+    color: white;
+}
+
+    #create-schedule:hover {
+        background-color: #45a049;
+    }
+
+#cancel-add-schedule {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+    #cancel-add-schedule:hover {
+        background-color: #d0d0d0;
+    }
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

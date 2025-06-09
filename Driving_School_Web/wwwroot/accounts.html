@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккаунты</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/accounts.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav>
+            <ul>
+                <li><a href="/main.html">Главная</a></li>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/cars.html">Автомобили</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="section-header">
+                <h2>Список аккаунтов</h2>
+                <button id="add-account">Добавить</button>
+            </div>
+            <div class="accounts-container">
+                <div class="filter-panel" id="filter-panel">
+                    <h3>Фильтры</h3>
+                    <label for="login-filter">Логин (номер телефона):</label>
+                    <input type="text" id="login-filter" placeholder="Введите логин...">
+                    <label for="user-type-filter">Тип пользователя:</label>
+                    <select id="user-type-filter">
+                        <option value="">Любой</option>
+                        <option value="2">Студент</option>
+                        <option value="1">Инструктор</option>
+                        <option value="3">Администратор</option>
+                    </select>
+                    <label for="full-name-filter">ФИО:</label>
+                    <input type="text" id="full-name-filter" placeholder="Введите ФИО...">
+                    <label for="city-filter">Город:</label>
+                    <select id="city-filter">
+                        <option value="">Любой</option>
+                    </select>
+                    <label for="driving-school-filter">Автошкола:</label>
+                    <select id="driving-school-filter">
+                        <option value="">Любая</option>
+                    </select>
+                    <div class="filter-buttons">
+                        <button id="apply-filters">Применить</button>
+                        <button id="reset-filters">Сбросить фильтры</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="accounts-table">
+                        <thead>
+                            <tr>
+                                <th>Логин (номер телефона)</th>
+                                <th>Пароль</th>
+                                <th>Тип пользователя</th>
+                                <th>ФИО</th>
+                                <th>Город</th>
+                                <th>Автошкола</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accounts-list"></tbody>
+                    </table>
+                    <div class="table-footer">
+                        <div class="table-controls">
+                            <label for="page-size">Записей на странице:</label>
+                            <select id="page-size">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="pagination">
+                            <button id="prev-page" disabled>Назад</button>
+                            <div id="page-numbers"></div>
+                            <button id="next-page">Вперёд</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для подтверждения удаления -->
+            <div id="delete-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Подтверждение удаления</h3>
+                    <p>Вы уверены, что хотите удалить аккаунт из системы?</p>
+                    <p class="warning">Внимание: при удалении аккаунта вся информация о владельце учетной записи будет удалена.</p>
+                    <div class="modal-buttons">
+                        <button id="confirm-delete">Удалить</button>
+                        <button id="cancel-delete">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для редактирования -->
+            <div id="edit-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Редактирование аккаунта</h3>
+                    <div class="edit-form">
+                        <label for="edit-login">Логин (номер телефона):</label>
+                        <input type="text" id="edit-login" placeholder="Введите логин...">
+                        <label for="edit-password">Пароль:</label>
+                        <input type="text" id="edit-password" placeholder="Введите пароль...">
+                        <p id="edit-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-edit">Сохранить</button>
+                        <button id="cancel-edit">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для добавления -->
+            <div id="add-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Добавление аккаунта</h3>
+                    <div class="edit-form">
+                        <label for="add-user-type" class="required">Тип пользователя:</label>
+                        <select id="add-user-type" required>
+                            <option value="">Выберите тип пользователя</option>
+                        </select>
+                        <div id="add-form"></div>
+                        <p id="add-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-add">Сохранить</button>
+                        <button id="cancel-add">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/accounts.js" defer></script>
+</body>
+</html>

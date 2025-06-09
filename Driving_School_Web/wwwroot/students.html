@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенты</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/students.css">
+</head>
+<body>
+    <header>
+        <h2>Информационная система управления учебным процессом автошколы</h2>
+        <nav>
+            <ul>
+                <li><a href="/schedule.html">Расписание</a></li>
+                <li><a href="/students.html">Студенты</a></li>
+                <li><a href="/instructors.html">Инструкторы</a></li>
+                <li><a href="/driving-schools.html">Автошколы</a></li>
+                <li><a href="/cars.html">Автомобили</a></li>
+                <li><a href="/accounts.html">Аккаунты</a></li>
+                <li><a href="/student-schedules.html">Мои записи</a></li>
+                <li><a href="/instructor-schedules.html">Мои записи</a></li>
+                <li><a href="/profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="section-header">
+                <h2>Список студентов</h2>
+                <!--<button id="add-student-btn">Добавить</button>-->
+            </div>
+            <div class="students-container">
+                <div class="filter-panel" id="filter-panel">
+                    <h3>Фильтры</h3>
+                    <label for="surname-filter">Фамилия:</label>
+                    <input type="text" id="surname-filter" placeholder="Введите фамилию...">
+                    <label for="name-filter">Имя:</label>
+                    <input type="text" id="name-filter" placeholder="Введите имя...">
+                    <label for="patronymic-filter">Отчество:</label>
+                    <input type="text" id="patronymic-filter" placeholder="Введите отчество...">
+                    <label for="phone-filter">Телефон:</label>
+                    <input type="text" id="phone-filter" placeholder="Введите номер телефона...">
+                    <label for="email-filter">Email:</label>
+                    <input type="text" id="email-filter" placeholder="Введите email...">
+                    <label for="city-filter">Город:</label>
+                    <select id="city-filter">
+                        <option value="">Любой</option>
+                    </select>
+                    <label for="driving-school-filter">Автошкола:</label>
+                    <select id="driving-school-filter">
+                        <option value="">Любая</option>
+                    </select>
+                    <div class="filter-buttons">
+                        <button id="apply-filters">Применить</button>
+                        <button id="reset-filters">Сбросить фильтры</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="students-table">
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Телефон</th>
+                                <th>Email</th>
+                                <th>Дата рождения</th>
+                                <th>Автошкола</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-list"></tbody>
+                    </table>
+                    <div class="table-footer">
+                        <div class="table-controls">
+                            <label for="page-size">Кол-во на страницу:</label>
+                            <select id="page-size">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="pagination">
+                            <button id="prev-page" disabled>Назад</button>
+                            <div id="page-numbers"></div>
+                            <button id="next-page">Вперёд</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для подтверждения удаления -->
+            <div id="delete-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Подтверждение удаления</h3>
+                    <p>Вы уверены, что хотите удалить студента из системы?</p>
+                    <p class="warning">Внимание: при удалении студента вся информация о нём будет удалена.</p>
+                    <div class="modal-buttons">
+                        <button id="confirm-delete">Удалить</button>
+                        <button id="cancel-delete">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно для редактирования/добавления -->
+            <div id="edit-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3 id="modal-title"></h3>
+                    <div class="edit-form">
+                        <label for="edit-surname" class="required">Фамилия:</label>
+                        <input type="text" id="edit-surname" placeholder="Введите фамилию...">
+                        <label for="edit-name" class="required">Имя:</label>
+                        <input type="text" id="edit-name" placeholder="Введите имя...">
+                        <label for="edit-patronymic">Отчество (если есть):</label>
+                        <input type="text" id="edit-patronymic" placeholder="Введите отчество...">
+                        <label for="edit-phone" class="required">Телефон:</label>
+                        <input type="text" id="edit-phone" placeholder="Введите номер телефона...">
+                        <label for="edit-email">Email:</label>
+                        <input type="text" id="edit-email" placeholder="Введите email...">
+                        <label for="edit-birthdate" class="required">Дата рождения:</label>
+                        <input type="date" id="edit-birthdate">
+                        <label for="edit-city" class="required">Город:</label>
+                        <select id="edit-city">
+                            <option value="">Выберите город</option>
+                        </select>
+                        <label for="edit-driving-school" class="required">Автошкола:</label>
+                        <select id="edit-driving-school">
+                            <option value="">Выберите автошколу</option>
+                        </select>
+                        <p id="edit-error" class="error-message" style="display: none;"></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="save-edit">Сохранить</button>
+                        <button id="cancel-edit">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 KoroleffTM</p>
+    </footer>
+
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/roles.js" defer></script>
+    <script src="/js/students.js" defer></script>
+</body>
+</html>

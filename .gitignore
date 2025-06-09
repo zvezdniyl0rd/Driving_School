@@ -1,0 +1,9 @@
+# Visual Studio
+bin/
+obj/
+*.suo
+*.user
+.vs/
+# ASP.NET Core
+*.log
+*.db
